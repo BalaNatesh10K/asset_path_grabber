@@ -26,15 +26,15 @@ This Python script extracts asset paths (e.g., `/content/dam/...`) from a list o
 ### 1. ✅ Install Python (3.7 or higher)
 
  Make sure Python is installed:
- python --version
+  python --version
 
 ### 2. 📦 Install Dependencies
 
  Open a terminal or command prompt and run:\
-  pip install playwright
+   pip install playwright
 
  Then install the required browser binaries:\
-  playwright install
+   playwright install
  
  This step is required the first time to download Chromium for browser automation.
 
