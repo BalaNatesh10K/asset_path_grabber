@@ -2,7 +2,6 @@
 
 This Python script extracts asset paths (e.g., `/content/dam/...`) from a list of URLs by scanning HTML elements with `src` and `srcset` attributes. It is useful for scraping media from Adobe Experience Manager (AEM) sites.
 
-The script also handles cookie popups (via a button with the class `button_test`) automatically.
 
 ---
 
