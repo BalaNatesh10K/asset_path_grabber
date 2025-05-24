@@ -1,8 +1,6 @@
 # Playwright Asset Extractor
 
-This Python script extracts asset paths (e.g., `/content/dam/...`) from a list of URLs by scanning HTML elements with `src` and `srcset` attributes. It is useful for scraping media from Adobe Experience Manager (AEM) sites.
-
-
+This Python script extracts asset paths (e.g., `/content/dam/...`) from a list of URLs by scanning HTML elements with `src` and `srcset` attributes.
 ---
 
 ## ✅ Features
@@ -17,10 +15,10 @@ This Python script extracts asset paths (e.g., `/content/dam/...`) from a list o
 
 ## 📁 Project Structure
 
-├── extract_dam_assets.py # Main script
-├── urls.txt # Input: list of URLs (one per line)
-└── output/
-└── results.txt # Output: extracted asset paths
+- extract_dam_assets.py # Main script
+─ urls.txt # Input: list of URLs (one per line)
+─ output/
+|─ results.txt # Output: extracted asset paths
 
 ---
 
