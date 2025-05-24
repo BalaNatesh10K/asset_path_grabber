@@ -39,7 +39,7 @@ This Python script extracts asset paths (e.g., `/content/dam/...`) from a list o
  This step is required the first time to download Chromium for browser automation.
 
 ### 3. ✏️ Prepare Input File
- Create a file called urls.txt in the same directory and add one URL per line: \n
+ Create a file called urls.txt in the same directory and add one URL per line:\
  https://www.example.com/page1
  https://www.example.com/page2
 
