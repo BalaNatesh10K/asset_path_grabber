@@ -17,7 +17,7 @@ This Python script extracts asset paths (e.g., `/content/dam/...`) from a list o
 
 - extract_dam_assets.py # Main script
 ─ urls.txt # Input: list of URLs (one per line)
-- output (dir auto created under which results.txt is stored)
+- output/ (dir auto created under which results.txt is stored)
 
 ---
 
