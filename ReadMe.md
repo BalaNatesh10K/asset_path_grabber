@@ -40,7 +40,7 @@ This Python script extracts asset paths (e.g., `/content/dam/...`) from a list o
 
 ### 3. ✏️ Prepare Input File
  Create a file called urls.txt in the same directory and add one URL per line:\
- https://www.example.com/page1
+ https://www.example.com/page1 \
  https://www.example.com/page2
 
 ### 4. ▶️ Run the Script
@@ -59,11 +59,11 @@ The script will:
 
 
 ### 📄 Example Output
- Sample content of output/results.txt:
+ Sample content of output/results.txt:\
 
- https://www.example.com/page1:
-  /content/dam/assets/image1.jpg
-  /content/dam/assets/image2.jpg
+ https://www.example.com/page1:\
+  /content/dam/assets/image1.jpg\
+  /content/dam/assets/image2.jpg\
 
- https://www.example.com/page2:
-  /content/dam/assets/doc1.pdf
+ https://www.example.com/page2:\
+  /content/dam/assets/doc1.pdf\
