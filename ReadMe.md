@@ -59,11 +59,11 @@ The script will:
 
 
 ### 📄 Example Output
- Sample content of output/results.txt:\
+ Sample content of output/results.txt:  
 
- https://www.example.com/page1:\
-  /content/dam/assets/image1.jpg\
-  /content/dam/assets/image2.jpg\
+ https://www.example.com/page1:  
+  /content/dam/assets/image1.jpg  
+  /content/dam/assets/image2.jpg  
 
- https://www.example.com/page2:\
-  /content/dam/assets/doc1.pdf\
+ https://www.example.com/page2:  
+  /content/dam/assets/doc1.pdf  
