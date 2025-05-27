@@ -8,8 +8,8 @@ OUTPUT_FILE = os.path.join(OUTPUT_DIR, "results.txt")
 
 async def accept_cookies(page):
     try:
-        await page.wait_for_selector(".button_test", timeout=5000)
-        await page.click(".button_test")
+        await page.wait_for_selector(".button_accept", timeout=5000)
+        await page.click(".button_accept")
         await page.wait_for_timeout(1000)
         print("✅ Cookies accepted.")
     except Exception:
