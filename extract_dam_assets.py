@@ -1,10 +1,11 @@
 import asyncio
 from playwright.async_api import async_playwright
 import os
+import json
 
 INPUT_FILE = "urls.txt"
-OUTPUT_DIR = "output"
-OUTPUT_FILE = os.path.join(OUTPUT_DIR, "results.txt")
+OUTPUT_FILE = "results.json"
+CONFIG_FILE = "config.json"
 
 async def accept_cookies(page):
     try:
@@ -13,7 +14,7 @@ async def accept_cookies(page):
         await page.wait_for_timeout(1000)
         print("✅ Cookies accepted.")
     except Exception:
-        print("⚠️  Cookie accept button not found or already accepted.")
+        print("⚠️ Cookie accept button not found or already accepted.")
 
 async def extract_assets(playwright, url):
     browser = await playwright.chromium.launch(headless=True)
@@ -50,16 +51,33 @@ async def extract_assets(playwright, url):
     await browser.close()
     return matches
 
+def segregate_assets(assets, unsupported_exts):
+    supported, unsupported = [], []
+
+    for asset in assets:
+        ext = os.path.splitext(asset.split("?")[0])[1].lower().lstrip(".")
+        if ext in unsupported_exts:
+            unsupported.append(asset)
+        else:
+            supported.append(asset)
+
+    return supported, unsupported
+
 async def main():
     print("🚀 Starting extraction script...")
-
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
-        print(f"📁 Created output directory: {OUTPUT_DIR}")
 
     if not os.path.exists(INPUT_FILE):
         print(f"❌ Input file '{INPUT_FILE}' not found.")
         return
+
+    if not os.path.exists(CONFIG_FILE):
+        print(f"❌ Config file '{CONFIG_FILE}' not found.")
+        return
+
+    # Load config
+    with open(CONFIG_FILE, "r", encoding="utf-8") as cfg:
+        config = json.load(cfg)
+        unsupported_exts = set(config.get("unsupported_extensions", []))
 
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         urls = [line.strip() for line in f if line.strip()]
@@ -68,16 +86,22 @@ async def main():
         print("⚠️ No URLs found in input file.")
         return
 
-    async with async_playwright() as playwright:
-        with open(OUTPUT_FILE, "w", encoding="utf-8") as out_file:
-            for url in urls:
-                print(f"\n➡️  Processing {url}")
-                matches = await extract_assets(playwright, url)
+    results = {}
 
-                out_file.write(f"{url}:\n\n")
-                for match in sorted(matches):
-                    out_file.write(f"{match}\n")
-                out_file.write("\n")
+    async with async_playwright() as playwright:
+        for url in urls:
+            print(f"\n➡️ Processing {url}")
+            matches = await extract_assets(playwright, url)
+
+            supported, unsupported = segregate_assets(matches, unsupported_exts)
+
+            results[url] = {
+                "scene7_supported": sorted(supported),
+                "scene7_unsupported": sorted(unsupported),
+            }
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as out_file:
+        json.dump(results, out_file, indent=4, ensure_ascii=False)
 
     print(f"\n✅ Done! Results saved to: {OUTPUT_FILE}")
 
